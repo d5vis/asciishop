@@ -55,6 +55,15 @@ const Preview = ({
           invert ? "bg-white text-black" : "bg-black text-white"
         } ${fullscreen ? "" : "rounded-2xl"}`
       )}
+      style={
+        content && !fullscreen
+          ? {
+              boxShadow: `0 0 48px rgba(255, 255, 255, ${
+                invert ? "0.75" : "0.1"
+              }`,
+            }
+          : {}
+      }
     >
       <pre
         style={{

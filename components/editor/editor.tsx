@@ -87,26 +87,35 @@ const Editor = () => {
 
   return (
     <div className="flex flex-col md:grid md:grid-cols-[1fr_auto] gap-4 w-full h-full">
-      <div className="flex flex-col gap-4 items-center justify-center h-full bg-card rounded-3xl p-4">
+      <div className="flex flex-col gap-4 items-center justify-center h-full  rounded-3xl p-4 transition-all">
         <Preview
           content={ascii}
           aspectRatio={aspectRatio}
           invert={invert}
           zoom={zoom}
         />
-        <div className="flex flex-col sm:flex-row gap-2">
-          <Input type="file" className="w-full" onChange={handleFileChange} />
-          <Button variant="outline" onClick={handleExport} disabled={!ascii}>
+        <div className="z-10 flex flex-col sm:flex-row gap-2">
+          <Input
+            type="file"
+            className="w-full rounded-2xl"
+            onChange={handleFileChange}
+          />
+          <Button
+            variant="outline"
+            className="rounded-2xl"
+            onClick={handleExport}
+            disabled={!ascii}
+          >
             Export
           </Button>
         </div>
       </div>
-      <div className="flex flex-col gap-4 min-w-96 h-full bg-card rounded-3xl p-8">
+      <div className="z-10 flex flex-col gap-4 lg:min-w-96 h-full  rounded-3xl p-8">
         <h2>
-          <b>adjustments</b>
+          <b>Adjustments</b>
         </h2>
         <div className="flex flex-col gap-2">
-          <Label htmlFor="aspect-ratio">aspect ratio</Label>
+          <Label htmlFor="aspect-ratio">Aspect Ratio</Label>
           <ToggleGroup
             id="aspect-ratio"
             type="single"
@@ -118,28 +127,28 @@ const Editor = () => {
           >
             <ToggleGroupItem
               value={AspectRatio.Wide.toString()}
-              className="w-full"
+              className="w-full rounded-2xl"
             >
-              wide
+              Wide
             </ToggleGroupItem>
             <ToggleGroupItem
               value={AspectRatio.Tall.toString()}
-              className="w-full"
+              className="w-full rounded-2xl"
               disabled
             >
-              tall
+              Tall
             </ToggleGroupItem>
             <ToggleGroupItem
               value={AspectRatio.Square.toString()}
-              className="w-full"
+              className="w-full rounded-2xl"
               disabled
             >
-              square
+              Square
             </ToggleGroupItem>
           </ToggleGroup>
         </div>
         <div className="flex flex-col gap-2">
-          <Label htmlFor="scale">scale: {scale}</Label>
+          <Label htmlFor="scale">Scale: {scale}</Label>
           <Slider
             id="scale"
             defaultValue={[1]}
@@ -150,7 +159,7 @@ const Editor = () => {
           />
         </div>
         <div className="flex flex-col gap-2">
-          <Label htmlFor="zoom">zoom: {zoom}</Label>
+          <Label htmlFor="zoom">Zoom: {zoom}</Label>
           <Slider
             id="zoom"
             defaultValue={[1]}
@@ -161,7 +170,7 @@ const Editor = () => {
           />
         </div>
         <div className="flex flex-col gap-2">
-          <Label htmlFor="brightness">brightness: {brightness}</Label>
+          <Label htmlFor="brightness">Brightness: {brightness}</Label>
           <Slider
             id="brightness"
             defaultValue={[100]}
@@ -171,7 +180,7 @@ const Editor = () => {
           />
         </div>
         <div className="flex flex-col gap-2">
-          <Label htmlFor="contrast">contrast: {contrast}</Label>
+          <Label htmlFor="contrast">Contrast: {contrast}</Label>
           <Slider
             id="contrast"
             defaultValue={[100]}
@@ -185,7 +194,7 @@ const Editor = () => {
             id="invert"
             onCheckedChange={(checked: boolean) => setInvert(checked)}
           />
-          <Label htmlFor="invert">invert colors</Label>
+          <Label htmlFor="invert">Invert</Label>
         </div>
       </div>
     </div>
