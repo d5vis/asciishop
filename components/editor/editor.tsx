@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Input } from "@/components/ui/input";
@@ -25,8 +24,6 @@ const DEFAULT_VALUES = {
 };
 
 const Editor = () => {
-  const router = useRouter();
-
   const [image, setImage] = useState<HTMLImageElement | null>(null);
   const [ascii, setAscii] = useState<string>("");
 
@@ -90,7 +87,7 @@ const Editor = () => {
 
   return (
     <div className="flex flex-col md:grid md:grid-cols-[1fr_auto] gap-4 w-full h-full">
-      <div className="flex flex-col gap-4 items-center justify-center w-full h-full bg-card rounded-3xl p-4">
+      <div className="flex flex-col gap-4 items-center justify-center h-full bg-card rounded-3xl p-4">
         <Preview
           content={ascii}
           aspectRatio={aspectRatio}
@@ -104,7 +101,7 @@ const Editor = () => {
           </Button>
         </div>
       </div>
-      <div className="flex flex-col gap-4 min-w-64 h-full bg-card rounded-3xl p-8">
+      <div className="flex flex-col gap-4 min-w-96 h-full bg-card rounded-3xl p-8">
         <h2>
           <b>adjustments</b>
         </h2>
