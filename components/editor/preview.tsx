@@ -1,6 +1,15 @@
 import { useEffect, useRef, useState } from "react";
+import { AspectRatio } from "../ui/aspect-ratio";
 
-const Preview = ({ content, scale }: { content: string; scale: number }) => {
+const Preview = ({
+  content,
+  aspectRatio,
+  zoom,
+}: {
+  content: string;
+  aspectRatio: number;
+  zoom: number;
+}) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [fontSize, setFontSize] = useState<number>(1);
 
@@ -22,26 +31,33 @@ const Preview = ({ content, scale }: { content: string; scale: number }) => {
       setFontSize(newFontSize);
     };
 
-    window.addEventListener("resize", handleResize);
+    const resizeObserver = new ResizeObserver(handleResize);
+    resizeObserver.observe(container);
+
     handleResize();
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      resizeObserver.disconnect();
     };
   }, [content]);
 
   return (
-    <div className="aspect-video overflow-hidden flex w-full items-center justify-center bg-black rounded-2xl">
+    <AspectRatio
+      ratio={aspectRatio}
+      ref={containerRef}
+      className="overflow-hidden flex items-center justify-center bg-black rounded-2xl"
+    >
       <pre
         className="text-white"
         style={{
-          fontSize: `${fontSize * 4}px`,
-          lineHeight: `${fontSize * 4}px`,
+          fontSize: `${fontSize}px`,
+          lineHeight: `${fontSize}px`,
+          transform: `scale(${zoom})`,
         }}
       >
         {content}
       </pre>
-    </div>
+    </AspectRatio>
   );
 };
 
