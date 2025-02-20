@@ -87,7 +87,7 @@ const Editor = () => {
 
   return (
     <div className="flex flex-col md:grid md:grid-cols-[1fr_auto] gap-4 w-full h-full">
-      <div className="flex flex-col gap-4 items-center justify-center h-full  rounded-3xl p-4 transition-all">
+      <div className="flex flex-col gap-4 items-center  h-full  rounded-3xl p-4 transition-all">
         <Preview
           content={ascii}
           aspectRatio={aspectRatio}
@@ -110,7 +110,7 @@ const Editor = () => {
           </Button>
         </div>
       </div>
-      <div className="z-10 flex flex-col gap-4 lg:min-w-96 h-full  rounded-3xl p-8">
+      <div className="z-10 flex flex-col gap-4 min-w-72 lg:min-w-96 h-full rounded-3xl p-8 transition-all">
         <h2>
           <b>Adjustments</b>
         </h2>
@@ -134,14 +134,12 @@ const Editor = () => {
             <ToggleGroupItem
               value={AspectRatio.Tall.toString()}
               className="w-full rounded-2xl"
-              disabled
             >
               Tall
             </ToggleGroupItem>
             <ToggleGroupItem
               value={AspectRatio.Square.toString()}
               className="w-full rounded-2xl"
-              disabled
             >
               Square
             </ToggleGroupItem>
