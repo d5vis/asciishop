@@ -1,13 +1,16 @@
 import { useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
 import { AspectRatio } from "../ui/aspect-ratio";
 
 const Preview = ({
   content,
   aspectRatio,
+  invert,
   zoom,
 }: {
   content: string;
   aspectRatio: number;
+  invert: boolean;
   zoom: number;
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -45,10 +48,13 @@ const Preview = ({
     <AspectRatio
       ratio={aspectRatio}
       ref={containerRef}
-      className="overflow-hidden flex items-center justify-center bg-black rounded-2xl"
+      className={cn(
+        `overflow-hidden flex items-center justify-center rounded-2xl ${
+          invert ? "bg-white text-black" : "bg-black text-white"
+        }`
+      )}
     >
       <pre
-        className="text-white"
         style={{
           fontSize: `${fontSize}px`,
           lineHeight: `${fontSize}px`,

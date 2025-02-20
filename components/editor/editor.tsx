@@ -67,15 +67,20 @@ const Editor = () => {
     img.src = image.src;
 
     img.onload = () => {
-      const ascii = ImageToAscii(img, invert, scale, brightness, contrast);
+      const ascii = ImageToAscii(img, scale, brightness, contrast);
       setAscii(ascii);
     };
-  }, [image, invert, scale, zoom, brightness, contrast]);
+  }, [image, scale, zoom, brightness, contrast]);
 
   return (
     <div className="flex flex-col md:grid md:grid-cols-[1fr_auto] gap-4 w-full h-full">
       <div className="flex flex-col gap-4 items-center justify-center w-full h-full bg-card rounded-3xl p-4">
-        <Preview content={ascii} aspectRatio={aspectRatio} zoom={zoom} />
+        <Preview
+          content={ascii}
+          aspectRatio={aspectRatio}
+          invert={invert}
+          zoom={zoom}
+        />
         <div className="flex flex-col sm:flex-row gap-2">
           <Input type="file" className="w-full" onChange={handleFileChange} />
           <Button

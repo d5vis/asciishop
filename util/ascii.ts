@@ -1,6 +1,5 @@
 export const ImageToAscii = (
   image: HTMLImageElement,
-  invert: boolean,
   scale: number,
   brightness: number,
   contrast: number
@@ -25,9 +24,7 @@ export const ImageToAscii = (
     const index = Math.floor(
       (brightness / 255) * (ascii_characters.length - 1)
     );
-    ascii += invert
-      ? ascii_characters[ascii_characters.length - 1 - index]
-      : ascii_characters[index];
+    ascii += ascii_characters[index];
     if ((i / 4) % width === 0) {
       ascii += "\n";
     }
