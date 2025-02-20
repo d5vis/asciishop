@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Input } from "@/components/ui/input";
@@ -24,6 +25,8 @@ const DEFAULT_VALUES = {
 };
 
 const Editor = () => {
+  const router = useRouter();
+
   const [image, setImage] = useState<HTMLImageElement | null>(null);
   const [ascii, setAscii] = useState<string>("");
 
@@ -55,6 +58,19 @@ const Editor = () => {
     reader.readAsDataURL(file);
   };
 
+  const handleExport = () => {
+    if (!ascii) return;
+
+    localStorage.setItem("ascii", ascii);
+    const params = new URLSearchParams({
+      aspectRatio: aspectRatio.toString(),
+      invert: invert.toString(),
+      zoom: zoom.toString(),
+    });
+
+    window.open(`/fullscreen?${params.toString()}`, "_blank");
+  };
+
   const handleAspectRatioChange = (value: string) => {
     if (!value) return;
     setAspectRatio(parseFloat(value));
@@ -83,13 +99,9 @@ const Editor = () => {
         />
         <div className="flex flex-col sm:flex-row gap-2">
           <Input type="file" className="w-full" onChange={handleFileChange} />
-          <Button
-            variant="outline"
-            onClick={() => navigator.clipboard.writeText(ascii)}
-          >
-            Copy Text
+          <Button variant="outline" onClick={handleExport} disabled={!ascii}>
+            Export
           </Button>
-          <Button variant="outline">Export to PNG</Button>
         </div>
       </div>
       <div className="flex flex-col gap-4 min-w-64 h-full bg-card rounded-3xl p-8">
@@ -111,21 +123,21 @@ const Editor = () => {
               value={AspectRatio.Wide.toString()}
               className="w-full"
             >
-              Wide
+              wide
             </ToggleGroupItem>
             <ToggleGroupItem
               value={AspectRatio.Tall.toString()}
               className="w-full"
               disabled
             >
-              Tall
+              tall
             </ToggleGroupItem>
             <ToggleGroupItem
               value={AspectRatio.Square.toString()}
               className="w-full"
               disabled
             >
-              Square
+              square
             </ToggleGroupItem>
           </ToggleGroup>
         </div>

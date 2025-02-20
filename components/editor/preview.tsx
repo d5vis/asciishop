@@ -7,11 +7,13 @@ const Preview = ({
   aspectRatio,
   invert,
   zoom,
+  fullscreen,
 }: {
   content: string;
   aspectRatio: number;
   invert: boolean;
   zoom: number;
+  fullscreen?: boolean;
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [fontSize, setFontSize] = useState<number>(1);
@@ -49,9 +51,9 @@ const Preview = ({
       ratio={aspectRatio}
       ref={containerRef}
       className={cn(
-        `overflow-hidden flex items-center justify-center rounded-2xl ${
+        `overflow-hidden flex items-center justify-center ${
           invert ? "bg-white text-black" : "bg-black text-white"
-        }`
+        } ${fullscreen ? "" : "rounded-2xl"}`
       )}
     >
       <pre
