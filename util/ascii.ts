@@ -14,13 +14,26 @@ export const ImageToAscii = (
   canvas.width = width;
   canvas.height = height;
 
-  context.filter = `brightness(${brightness}%) contrast(${contrast}%)`;
   context.drawImage(image, 0, 0, width, height);
 
-  const data = context.getImageData(0, 0, width, height).data;
-  let ascii = "";
+  const imageData = context.getImageData(0, 0, width, height);
+  const data = imageData.data;
+
+  const factor = (259 * (contrast + 255)) / (255 * (259 - contrast));
   for (let i = 0; i < data.length; i += 4) {
-    const brightness = (data[i] + data[i + 1] + data[i + 2]) / 3;
+    // Red
+    data[i] = factor * (data[i] - 128) + 128 + brightness;
+    // Green
+    data[i + 1] = factor * (data[i + 1] - 128) + 128 + brightness;
+    // Blue
+    data[i + 2] = factor * (data[i + 2] - 128) + 128 + brightness;
+  }
+  context.putImageData(imageData, 0, 0);
+
+  const asciiData = context.getImageData(0, 0, width, height).data;
+  let ascii = "";
+  for (let i = 0; i < asciiData.length; i += 4) {
+    const brightness = (asciiData[i] + asciiData[i + 1] + asciiData[i + 2]) / 3;
     const index = Math.floor(
       (brightness / 255) * (ascii_characters.length - 1)
     );

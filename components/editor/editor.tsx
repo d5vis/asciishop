@@ -20,8 +20,8 @@ const DEFAULT_VALUES = {
   aspectRatio: AspectRatio.Wide,
   fontScale: 0.3,
   zoom: 1,
-  brightness: 100,
-  contrast: 100,
+  brightness: 0,
+  contrast: 0,
   grain: 0,
 };
 
@@ -180,7 +180,8 @@ const Editor = () => {
           <Slider
             id="brightness"
             defaultValue={[DEFAULT_VALUES.brightness]}
-            max={200}
+            min={-100}
+            max={100}
             step={1}
             onValueChange={(value: number[]) => setBrightness(value[0])}
             disabled={!image}
@@ -191,7 +192,8 @@ const Editor = () => {
           <Slider
             id="contrast"
             defaultValue={[DEFAULT_VALUES.contrast]}
-            max={200}
+            min={-100}
+            max={100}
             step={1}
             onValueChange={(value: number[]) => setContrast(value[0])}
             disabled={!image}
