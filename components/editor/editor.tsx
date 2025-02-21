@@ -116,7 +116,7 @@ const Editor = () => {
         </div>
       </div>
       <div
-        className="flex flex-col gap-4 min-w-72 h-full rounded-3xl p-4 transition-all"
+        className="flex flex-col gap-4 min-w-72 h-full rounded-3xl p-4 text-[32px] transition-all"
         style={{
           opacity: image ? 1 : 0.2,
         }}

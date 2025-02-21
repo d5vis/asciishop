@@ -3,7 +3,7 @@ import Title from "@/components/title";
 
 export default function Home() {
   return (
-    <div className="crt motion-blur-in-sm motion-delay-100 grid grid-rows-[1fr_auto] items-center justify-center min-h-screen p-4 gap-2 font-[family-name:var(--font-silkscreen)]">
+    <div className="crt motion-blur-in-sm motion-delay-100 grid grid-rows-[1fr_auto] items-center justify-center min-h-screen p-4 gap-2 font-[family-name:var(--font-vt323)]">
       <div>
         <header className="px-4 lg:px-12">
           <Title />

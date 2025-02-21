@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Silkscreen } from "next/font/google";
+import { VT323 } from "next/font/google";
 import "./globals.css";
 
-const silkscreen = Silkscreen({
-  variable: "--font-silkscreen",
+const vt323 = VT323({
+  variable: "--font-vt323",
   subsets: ["latin"],
   weight: "400",
 });
@@ -23,7 +23,7 @@ export default function RootLayout({
       <head>
         <meta name="apple-mobile-web-app-title" content="asciishop" />
       </head>
-      <body className={`${silkscreen.variable} antialiased dark bg-background`}>
+      <body className={`${vt323.variable} antialiased dark bg-background`}>
         {children}
       </body>
     </html>
