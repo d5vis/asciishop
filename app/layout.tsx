@@ -20,6 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="apple-mobile-web-app-title" content="asciishop" />
+      </head>
       <body className={`${silkscreen.variable} antialiased dark bg-background`}>
         {children}
       </body>
