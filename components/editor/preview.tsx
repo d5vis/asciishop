@@ -50,6 +50,7 @@ const Preview = ({
 
   return (
     <AspectRatio
+      id="preview"
       ratio={aspectRatio}
       ref={containerRef}
       className={cn(
