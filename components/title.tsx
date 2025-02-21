@@ -7,7 +7,7 @@ const Title = () => {
   `;
 
   return (
-    <h1 className="text-[8px]">
+    <h1 className="text-[8px] drop-shadow-glow">
       <pre>{asciiArt}</pre>
     </h1>
   );

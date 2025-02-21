@@ -1,6 +1,6 @@
 export const ImageToAscii = (
   image: HTMLImageElement,
-  scale: number,
+  fontScale: number,
   brightness: number,
   contrast: number
 ): string => {
@@ -9,8 +9,8 @@ export const ImageToAscii = (
   if (!context) {
     throw new Error("Failed to get 2d context");
   }
-  const width = Math.floor(image.width * scale * 0.5);
-  const height = Math.floor(image.height * scale * 0.5);
+  const width = Math.floor(image.width * fontScale * 0.5);
+  const height = Math.floor(image.height * fontScale * 0.5);
   canvas.width = width;
   canvas.height = height;
 

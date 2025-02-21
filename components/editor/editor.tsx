@@ -18,7 +18,7 @@ enum AspectRatio {
 
 const DEFAULT_VALUES = {
   aspectRatio: AspectRatio.Wide,
-  scale: 0.5,
+  fontScale: 0.3,
   zoom: 1,
   brightness: 100,
   contrast: 100,
@@ -32,7 +32,7 @@ const Editor = () => {
   const [aspectRatio, setAspectRatio] = useState<number>(
     DEFAULT_VALUES.aspectRatio
   );
-  const [scale, setScale] = useState<number>(DEFAULT_VALUES.scale);
+  const [fontScale, setFontScale] = useState<number>(DEFAULT_VALUES.fontScale);
   const [zoom, setZoom] = useState<number>(DEFAULT_VALUES.zoom);
   const [brightness, setBrightness] = useState<number>(
     DEFAULT_VALUES.brightness
@@ -84,10 +84,10 @@ const Editor = () => {
     img.src = image.src;
 
     img.onload = () => {
-      const ascii = ImageToAscii(img, scale, brightness, contrast);
+      const ascii = ImageToAscii(img, fontScale, brightness, contrast);
       setAscii(ascii);
     };
-  }, [image, scale, zoom, brightness, contrast, grain]);
+  }, [image, fontScale, zoom, brightness, contrast, grain]);
 
   return (
     <div className="flex flex-col md:grid md:grid-cols-[1fr_auto] gap-4 w-full h-full">
@@ -99,7 +99,7 @@ const Editor = () => {
           zoom={zoom}
           grain={grain}
         />
-        <div className="z-10 flex flex-col sm:flex-row gap-2">
+        <div className="z-20 flex flex-col sm:flex-row gap-2">
           <Input
             type="file"
             className="w-full rounded-2xl"
@@ -115,7 +115,7 @@ const Editor = () => {
           </Button>
         </div>
       </div>
-      <div className="z-10 flex flex-col gap-4 min-w-72 lg:min-w-96 h-full rounded-3xl p-4 transition-all">
+      <div className="flex flex-col gap-4 min-w-72 h-full rounded-3xl p-4 transition-all">
         <h2>
           <b>Adjustments</b>
         </h2>
@@ -152,14 +152,14 @@ const Editor = () => {
           </ToggleGroup>
         </div>
         <div className="flex flex-col gap-2">
-          <Label htmlFor="scale">Scale: {scale}</Label>
+          <Label htmlFor="fontScale">Font Scale: {fontScale}</Label>
           <Slider
-            id="scale"
-            defaultValue={[DEFAULT_VALUES.scale]}
+            id="fontScale"
+            defaultValue={[DEFAULT_VALUES.fontScale]}
             min={0.1}
             max={2}
             step={0.1}
-            onValueChange={(value: number[]) => setScale(value[0])}
+            onValueChange={(value: number[]) => setFontScale(value[0])}
             disabled={!image}
           />
         </div>

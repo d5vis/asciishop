@@ -53,7 +53,7 @@ const Preview = ({
       ratio={aspectRatio}
       ref={containerRef}
       className={cn(
-        `relative overflow-hidden flex items-center justify-center ${
+        `relative overflow-hidden flex items-center justify-center transition-all duration-100 ${
           invert ? "bg-white text-black" : "bg-black text-white"
         } ${fullscreen ? "" : "rounded-2xl"}`
       )}
