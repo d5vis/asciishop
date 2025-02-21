@@ -9,7 +9,7 @@ const vt323 = VT323({
 });
 
 export const metadata: Metadata = {
-  title: "asciishop",
+  title: "Asciishop",
   description: "an ascii art editor",
 };
 
@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta name="apple-mobile-web-app-title" content="asciishop" />
+        <meta name="apple-mobile-web-app-title" content="Asciishop" />
       </head>
       <body className={`${vt323.variable} antialiased dark bg-background`}>
         {children}

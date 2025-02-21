@@ -1,6 +1,6 @@
 {
-  "name": "asciishop",
-  "short_name": "asciishop",
+  "name": "Asciishop",
+  "short_name": "Asciishop",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -15,7 +15,7 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#0d0d0d",
-  "background_color": "#0d0d0d",
+  "theme_color": "0d0d0d",
+  "background_color": "0d0d0d",
   "display": "standalone"
 }
