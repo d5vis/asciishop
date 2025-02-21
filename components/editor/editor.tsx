@@ -129,6 +129,7 @@ const Editor = () => {
             defaultValue={AspectRatio.Wide.toString()}
             onValueChange={handleAspectRatioChange}
             className="text-border"
+            disabled={!image}
           >
             <ToggleGroupItem
               value={AspectRatio.Wide.toString()}
@@ -159,6 +160,7 @@ const Editor = () => {
             max={2}
             step={0.1}
             onValueChange={(value: number[]) => setScale(value[0])}
+            disabled={!image}
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -170,6 +172,7 @@ const Editor = () => {
             max={2}
             step={0.1}
             onValueChange={(value: number[]) => setZoom(value[0])}
+            disabled={!image}
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -180,6 +183,7 @@ const Editor = () => {
             max={200}
             step={1}
             onValueChange={(value: number[]) => setBrightness(value[0])}
+            disabled={!image}
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -190,6 +194,7 @@ const Editor = () => {
             max={200}
             step={1}
             onValueChange={(value: number[]) => setContrast(value[0])}
+            disabled={!image}
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -200,12 +205,14 @@ const Editor = () => {
             max={100}
             step={1}
             onValueChange={(value: number[]) => setGrain(value[0])}
+            disabled={!image}
           />
         </div>
         <div className="flex flex-row gap-2">
           <Checkbox
             id="invert"
             onCheckedChange={(checked: boolean) => setInvert(checked)}
+            disabled={!image}
           />
           <Label htmlFor="invert">Invert</Label>
         </div>

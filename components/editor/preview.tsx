@@ -60,7 +60,7 @@ const Preview = ({
       style={
         content && !fullscreen
           ? {
-              boxShadow: `0 0 48px rgba(255, 255, 255, ${
+              boxShadow: `0 0px 96px rgba(255, 255, 255, ${
                 invert ? "0.75" : "0.1"
               }`,
             }
