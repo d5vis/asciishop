@@ -1,9 +1,9 @@
 "use client";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Preview from "@/components/editor/preview";
 
-const Fullscreen = () => {
+const FullscreenContent = () => {
   const searchParams = useSearchParams();
   const aspectRatio = searchParams.get("aspectRatio");
   const invert = searchParams.get("invert");
@@ -29,6 +29,14 @@ const Fullscreen = () => {
       grain={parseFloat(grain as string)}
       fullscreen
     />
+  );
+};
+
+const Fullscreen = () => {
+  return (
+    <Suspense fallback={null}>
+      <FullscreenContent />
+    </Suspense>
   );
 };
 
