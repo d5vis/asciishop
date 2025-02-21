@@ -5,6 +5,8 @@
                              |_|
 ```
 
+![asciishop preview](https://i.imgur.com/Q0oLopa.png)
+
 > photoshop, but for ascii art
 
 # development
