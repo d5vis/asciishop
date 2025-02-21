@@ -115,7 +115,12 @@ const Editor = () => {
           </Button>
         </div>
       </div>
-      <div className="flex flex-col gap-4 min-w-72 h-full rounded-3xl p-4 transition-all">
+      <div
+        className="flex flex-col gap-4 min-w-72 h-full rounded-3xl p-4 transition-all"
+        style={{
+          opacity: image ? 1 : 0.2,
+        }}
+      >
         <h2>
           <b>Adjustments</b>
         </h2>
