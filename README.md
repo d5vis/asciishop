@@ -5,7 +5,7 @@
                              |_|
 ```
 
-![asciishop preview](https://i.imgur.com/Q0oLopa.png)
+![asciishop preview](https://i.imgur.com/DI67Goe.png)
 
 > photoshop, but for ascii art
 
