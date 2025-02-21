@@ -7,7 +7,7 @@ export default function Home() {
       <header className="px-12">
         <Title />
       </header>
-      <main className="flex flex-col gap-4 items-center justify-center w-screen h-full px-8">
+      <main className="flex flex-col gap-4 items-center justify-center max-w-[1440px] h-full px-8">
         <Editor />
       </main>
       <footer className="flex gap-1 flex-wrap items-center justify-center pt-4">
