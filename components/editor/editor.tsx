@@ -5,9 +5,10 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Slider } from "@/components/ui/slider";
-import Preview from "./preview";
 import { ImageToAscii } from "@/util/ascii";
 import { Button } from "../ui/button";
+
+import Preview from "@/components/editor/preview";
 
 enum AspectRatio {
   Wide = 16 / 9,
@@ -21,6 +22,7 @@ const DEFAULT_VALUES = {
   zoom: 1,
   brightness: 100,
   contrast: 100,
+  grain: 0,
 };
 
 const Editor = () => {
@@ -36,6 +38,7 @@ const Editor = () => {
     DEFAULT_VALUES.brightness
   );
   const [contrast, setContrast] = useState<number>(DEFAULT_VALUES.contrast);
+  const [grain, setGrain] = useState<number>(DEFAULT_VALUES.grain);
   const [invert, setInvert] = useState<boolean>(false);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,6 +66,7 @@ const Editor = () => {
       aspectRatio: aspectRatio.toString(),
       invert: invert.toString(),
       zoom: zoom.toString(),
+      grain: grain.toString(),
     });
 
     window.open(`/fullscreen?${params.toString()}`, "_blank");
@@ -83,16 +87,17 @@ const Editor = () => {
       const ascii = ImageToAscii(img, scale, brightness, contrast);
       setAscii(ascii);
     };
-  }, [image, scale, zoom, brightness, contrast]);
+  }, [image, scale, zoom, brightness, contrast, grain]);
 
   return (
     <div className="flex flex-col md:grid md:grid-cols-[1fr_auto] gap-4 w-full h-full">
-      <div className="flex flex-col gap-4 items-center  h-full  rounded-3xl p-4 transition-all">
+      <div className="flex flex-col gap-4 items-center h-full rounded-3xl p-4 transition-all">
         <Preview
           content={ascii}
           aspectRatio={aspectRatio}
           invert={invert}
           zoom={zoom}
+          grain={grain}
         />
         <div className="z-10 flex flex-col sm:flex-row gap-2">
           <Input
@@ -110,7 +115,7 @@ const Editor = () => {
           </Button>
         </div>
       </div>
-      <div className="z-10 flex flex-col gap-4 min-w-72 lg:min-w-96 h-full rounded-3xl p-8 transition-all">
+      <div className="z-10 flex flex-col gap-4 min-w-72 lg:min-w-96 h-full rounded-3xl p-4 transition-all">
         <h2>
           <b>Adjustments</b>
         </h2>
@@ -149,7 +154,7 @@ const Editor = () => {
           <Label htmlFor="scale">Scale: {scale}</Label>
           <Slider
             id="scale"
-            defaultValue={[1]}
+            defaultValue={[DEFAULT_VALUES.scale]}
             min={0.1}
             max={2}
             step={0.1}
@@ -160,7 +165,7 @@ const Editor = () => {
           <Label htmlFor="zoom">Zoom: {zoom}</Label>
           <Slider
             id="zoom"
-            defaultValue={[1]}
+            defaultValue={[DEFAULT_VALUES.zoom]}
             min={0.1}
             max={2}
             step={0.1}
@@ -171,7 +176,7 @@ const Editor = () => {
           <Label htmlFor="brightness">Brightness: {brightness}</Label>
           <Slider
             id="brightness"
-            defaultValue={[100]}
+            defaultValue={[DEFAULT_VALUES.brightness]}
             max={200}
             step={1}
             onValueChange={(value: number[]) => setBrightness(value[0])}
@@ -181,10 +186,20 @@ const Editor = () => {
           <Label htmlFor="contrast">Contrast: {contrast}</Label>
           <Slider
             id="contrast"
-            defaultValue={[100]}
+            defaultValue={[DEFAULT_VALUES.contrast]}
             max={200}
             step={1}
             onValueChange={(value: number[]) => setContrast(value[0])}
+          />
+        </div>
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="grain">Grain: {grain}</Label>
+          <Slider
+            id="grain"
+            defaultValue={[DEFAULT_VALUES.grain]}
+            max={100}
+            step={1}
+            onValueChange={(value: number[]) => setGrain(value[0])}
           />
         </div>
         <div className="flex flex-row gap-2">

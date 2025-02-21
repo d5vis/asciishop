@@ -7,12 +7,14 @@ const Preview = ({
   aspectRatio,
   invert,
   zoom,
+  grain,
   fullscreen,
 }: {
   content: string;
   aspectRatio: number;
   invert: boolean;
   zoom: number;
+  grain: number;
   fullscreen?: boolean;
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -51,7 +53,7 @@ const Preview = ({
       ratio={aspectRatio}
       ref={containerRef}
       className={cn(
-        `overflow-hidden flex items-center justify-center ${
+        `relative overflow-hidden flex items-center justify-center ${
           invert ? "bg-white text-black" : "bg-black text-white"
         } ${fullscreen ? "" : "rounded-2xl"}`
       )}
@@ -74,6 +76,10 @@ const Preview = ({
       >
         {content}
       </pre>
+      <div
+        className="z-10 absolute inset-0 flex items-center justify-center bg-grain bg-[512px] rounded-2xl"
+        style={{ opacity: `${grain}%` }}
+      />
     </AspectRatio>
   );
 };

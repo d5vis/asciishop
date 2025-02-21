@@ -8,6 +8,7 @@ const Fullscreen = () => {
   const aspectRatio = searchParams.get("aspectRatio");
   const invert = searchParams.get("invert");
   const zoom = searchParams.get("zoom");
+  const grain = searchParams.get("grain");
   const [content, setContent] = useState<string | null>(null);
 
   useEffect(() => {
@@ -25,6 +26,7 @@ const Fullscreen = () => {
       aspectRatio={parseFloat(aspectRatio as string)}
       invert={invert === "true"}
       zoom={parseFloat(zoom as string)}
+      grain={parseFloat(grain as string)}
       fullscreen
     />
   );
