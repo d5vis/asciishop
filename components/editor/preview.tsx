@@ -5,14 +5,14 @@ import { AspectRatio } from "../ui/aspect-ratio";
 const Preview = ({
   content,
   aspectRatio,
-  invert,
+  invertColors,
   zoom,
   grain,
   fullscreen,
 }: {
   content: string;
   aspectRatio: number;
-  invert: boolean;
+  invertColors: boolean;
   zoom: number;
   grain: number;
   fullscreen?: boolean;
@@ -55,14 +55,14 @@ const Preview = ({
       ref={containerRef}
       className={cn(
         `relative overflow-hidden flex items-center justify-center transition-all duration-100 ${
-          invert ? "bg-white text-black" : "bg-black text-white"
+          invertColors ? "bg-white text-black" : "bg-black text-white"
         } ${!fullscreen && "rounded-2xl"}`
       )}
       style={
         content && !fullscreen
           ? {
               boxShadow: `0 0px 96px rgba(255, 255, 255, ${
-                invert ? "0.75" : "0.1"
+                invertColors ? "0.75" : "0.1"
               }`,
             }
           : {}

@@ -39,7 +39,8 @@ const Editor = () => {
   );
   const [contrast, setContrast] = useState<number>(DEFAULT_VALUES.contrast);
   const [grain, setGrain] = useState<number>(DEFAULT_VALUES.grain);
-  const [invert, setInvert] = useState<boolean>(false);
+  const [invertColors, setInvertColors] = useState<boolean>(false);
+  const [invertText, setInvertText] = useState<boolean>(false);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -64,7 +65,7 @@ const Editor = () => {
     localStorage.setItem("ascii", ascii);
     const params = new URLSearchParams({
       aspectRatio: aspectRatio.toString(),
-      invert: invert.toString(),
+      invertColors: invertColors.toString(),
       zoom: zoom.toString(),
       grain: grain.toString(),
     });
@@ -84,10 +85,16 @@ const Editor = () => {
     img.src = image.src;
 
     img.onload = () => {
-      const ascii = ImageToAscii(img, fontScale, brightness, contrast);
+      const ascii = ImageToAscii(
+        img,
+        fontScale,
+        brightness,
+        contrast,
+        invertText
+      );
       setAscii(ascii);
     };
-  }, [image, fontScale, zoom, brightness, contrast, grain]);
+  }, [image, fontScale, zoom, brightness, contrast, grain, invertText]);
 
   return (
     <div className="flex flex-col lg:grid lg:grid-cols-[1fr_auto] gap-4 w-full h-full">
@@ -95,7 +102,7 @@ const Editor = () => {
         <Preview
           content={ascii}
           aspectRatio={aspectRatio}
-          invert={invert}
+          invertColors={invertColors}
           zoom={zoom}
           grain={grain}
         />
@@ -217,11 +224,19 @@ const Editor = () => {
         </div>
         <div className="flex flex-row gap-2">
           <Checkbox
-            id="invert"
-            onCheckedChange={(checked: boolean) => setInvert(checked)}
+            id="invertText"
+            onCheckedChange={(checked: boolean) => setInvertText(checked)}
             disabled={!image}
           />
-          <Label htmlFor="invert">Invert</Label>
+          <Label htmlFor="invertText">Invert Text</Label>
+        </div>
+        <div className="flex flex-row gap-2">
+          <Checkbox
+            id="invertColors"
+            onCheckedChange={(checked: boolean) => setInvertColors(checked)}
+            disabled={!image}
+          />
+          <Label htmlFor="invertColors">Invert Colors</Label>
         </div>
       </div>
     </div>

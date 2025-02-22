@@ -2,7 +2,8 @@ export const ImageToAscii = (
   image: HTMLImageElement,
   fontScale: number,
   brightness: number,
-  contrast: number
+  contrast: number,
+  invertText: boolean
 ): string => {
   const canvas = document.createElement("canvas");
   const context = canvas.getContext("2d");
@@ -27,6 +28,15 @@ export const ImageToAscii = (
     data[i + 1] = factor * (data[i + 1] - 128) + 128 + brightness;
     // Blue
     data[i + 2] = factor * (data[i + 2] - 128) + 128 + brightness;
+
+    if (invertText) {
+      // Red
+      data[i] = 255 - data[i];
+      // Green
+      data[i + 1] = 255 - data[i + 1];
+      // Blue
+      data[i + 2] = 255 - data[i + 2];
+    }
   }
   context.putImageData(imageData, 0, 0);
 
