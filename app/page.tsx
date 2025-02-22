@@ -21,7 +21,7 @@ export default function Home() {
         >
           @d5vis
         </a>{" "}
-        //{" "}
+        {"// "}
         <a href="https://buymeacoffee.com/d5vis" target="_blank">
           Buy me a ☕️
         </a>
