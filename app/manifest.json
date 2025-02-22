@@ -1,6 +1,6 @@
 {
-  "name": "Asciishop",
-  "short_name": "Asciishop",
+  "name": "asciishop",
+  "short_name": "asciishop",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",

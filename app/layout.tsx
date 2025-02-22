@@ -9,7 +9,7 @@ const vt323 = VT323({
 });
 
 export const metadata: Metadata = {
-  title: "Asciishop",
+  title: "asciishop",
   description: "an ascii art editor",
 };
 
