@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 const FullscreenContent = () => {
   const searchParams = useSearchParams();
   const aspectRatio = searchParams.get("aspectRatio");
-  const invert = searchParams.get("invert");
+  const invertColors = searchParams.get("invertColors");
   const zoom = searchParams.get("zoom");
   const grain = searchParams.get("grain");
   const [content, setContent] = useState<string | null>(null);
@@ -43,7 +43,7 @@ const FullscreenContent = () => {
       <Preview
         content={content}
         aspectRatio={parseFloat(aspectRatio as string)}
-        invert={invert === "true"}
+        invertColors={invertColors === "true"}
         zoom={parseFloat(zoom as string)}
         grain={parseFloat(grain as string)}
         fullscreen
