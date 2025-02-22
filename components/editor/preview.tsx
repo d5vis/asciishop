@@ -56,7 +56,7 @@ const Preview = ({
       className={cn(
         `relative overflow-hidden flex items-center justify-center transition-all duration-100 ${
           invert ? "bg-white text-black" : "bg-black text-white"
-        } ${fullscreen ? "" : "rounded-2xl"}`
+        } ${!fullscreen && "rounded-2xl"}`
       )}
       style={
         content && !fullscreen
@@ -78,7 +78,10 @@ const Preview = ({
         {content}
       </pre>
       <div
-        className="z-10 absolute inset-0 flex items-center justify-center bg-grain bg-[512px] rounded-2xl"
+        className={`z-10 absolute inset-0 flex items-center justify-center bg-grain bg-[512px] ${
+          !fullscreen && "rounded-2xl"
+        }
+        `}
         style={{ opacity: `${grain}%` }}
       />
     </AspectRatio>
