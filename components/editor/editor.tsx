@@ -85,14 +85,9 @@ const Editor = () => {
     img.src = image.src;
 
     img.onload = () => {
-      const ascii = ImageToAscii(
-        img,
-        fontScale,
-        brightness,
-        contrast,
-        invertText
+      ImageToAscii(img, fontScale, brightness, contrast, invertText).then(
+        (ascii) => setAscii(ascii)
       );
-      setAscii(ascii);
     };
   }, [image, fontScale, zoom, brightness, contrast, grain, invertText]);
 
@@ -169,7 +164,7 @@ const Editor = () => {
             id="fontScale"
             defaultValue={[DEFAULT_VALUES.fontScale]}
             min={0.1}
-            max={1}
+            max={1.5}
             step={0.1}
             onValueChange={(value: number[]) => setFontScale(value[0])}
             disabled={!image}

@@ -18,3 +18,11 @@ pnpm dev
 ```
 
 then open [http://localhost:3000](http://localhost:3000)
+
+## wasm
+
+to build the rust package:
+
+```bash
+wasm-pack build --target web
+```
