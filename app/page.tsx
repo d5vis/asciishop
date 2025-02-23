@@ -5,10 +5,10 @@ export default function Home() {
   return (
     <div className="crt motion-blur-in-sm motion-delay-150 grid grid-rows-[1fr_auto] items-center justify-center min-h-screen p-4 gap-2 font-[family-name:var(--font-vt323)]">
       <div>
-        <header className="px-4 lg:px-12">
+        <header className="px-4">
           <Title />
         </header>
-        <main className="flex flex-col gap-4 items-center justify-center w-[85vw] max-w-[1440px] h-full lg:px-8">
+        <main className="flex flex-col gap-4 items-center justify-center w-[85vw] max-w-[1440px] h-full">
           <Editor />
         </main>
       </div>
