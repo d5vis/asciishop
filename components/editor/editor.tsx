@@ -9,7 +9,6 @@ import { ImageToAscii } from "@/util/ascii";
 import { Button } from "../ui/button";
 
 import Preview from "@/components/editor/preview";
-import { cn } from "@/lib/utils";
 
 enum AspectRatio {
   Wide = 16 / 9,
@@ -124,7 +123,7 @@ const Editor = () => {
         </div>
       </div>
       <div
-        className="flex flex-col gap-4 min-w-96 h-full rounded-3xl p-4 text-[32px] transition-all"
+        className="flex flex-col gap-4 md:min-w-96 h-full rounded-3xl p-4 text-[32px] transition-all"
         style={{
           opacity: image ? 1 : 0.2,
         }}
