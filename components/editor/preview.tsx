@@ -69,6 +69,7 @@ const Preview = ({
       }
     >
       <pre
+        className="tracking-[0.5em] font-[family-name:var(--font-vt323)]"
         style={{
           fontSize: `${fontSize}px`,
           lineHeight: `${fontSize}px`,

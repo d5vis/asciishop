@@ -169,7 +169,7 @@ const Editor = () => {
             id="fontScale"
             defaultValue={[DEFAULT_VALUES.fontScale]}
             min={0.1}
-            max={2}
+            max={1}
             step={0.1}
             onValueChange={(value: number[]) => setFontScale(value[0])}
             disabled={!image}
