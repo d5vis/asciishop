@@ -98,15 +98,7 @@ const Editor = () => {
   }, [image, fontScale, zoom, brightness, contrast, grain, invertText]);
 
   return (
-    <div
-      className={cn(
-        `flex flex-col ${
-          aspectRatio === AspectRatio.Wide
-            ? "md:grid md:grid-cols-[1fr_auto]"
-            : "sm:grid sm:grid-cols-[1fr_auto]"
-        } gap-4 w-full h-full`
-      )}
-    >
+    <div className="flex flex-col md:grid md:grid-cols-[1fr_auto] gap-4 w-full h-full">
       <div className="flex flex-col gap-4 items-center h-full rounded-3xl p-4 transition-all">
         <Preview
           content={ascii}
