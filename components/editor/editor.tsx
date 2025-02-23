@@ -106,7 +106,7 @@ const Editor = () => {
           zoom={zoom}
           grain={grain}
         />
-        <div className="z-20 flex flex-col sm:flex-row gap-2">
+        <div className="sticky bottom-4 z-20 flex flex-col sm:flex-row gap-2">
           <Input
             type="file"
             className="w-full rounded-2xl"
