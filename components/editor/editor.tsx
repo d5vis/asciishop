@@ -16,8 +16,14 @@ enum AspectRatio {
   Square = 1,
 }
 
+enum CharacterSet {
+  Alphanumeric = "alphanumeric",
+  Block = "block",
+}
+
 const DEFAULT_VALUES = {
   aspectRatio: AspectRatio.Wide,
+  characterSet: CharacterSet.Alphanumeric,
   fontScale: 0.3,
   zoom: 1,
   brightness: 0,
@@ -31,6 +37,9 @@ const Editor = () => {
 
   const [aspectRatio, setAspectRatio] = useState<number>(
     DEFAULT_VALUES.aspectRatio
+  );
+  const [characterSet, setCharacterSet] = useState<string>(
+    DEFAULT_VALUES.characterSet
   );
   const [fontScale, setFontScale] = useState<number>(DEFAULT_VALUES.fontScale);
   const [zoom, setZoom] = useState<number>(DEFAULT_VALUES.zoom);
@@ -85,11 +94,25 @@ const Editor = () => {
     img.src = image.src;
 
     img.onload = () => {
-      ImageToAscii(img, fontScale, brightness, contrast, invertText).then(
-        (ascii) => setAscii(ascii)
-      );
+      ImageToAscii(
+        img,
+        fontScale,
+        brightness,
+        contrast,
+        invertText,
+        characterSet
+      ).then((ascii) => setAscii(ascii));
     };
-  }, [image, fontScale, zoom, brightness, contrast, grain, invertText]);
+  }, [
+    image,
+    fontScale,
+    zoom,
+    brightness,
+    contrast,
+    grain,
+    invertText,
+    characterSet,
+  ]);
 
   return (
     <div className="flex flex-col md:grid md:grid-cols-[1fr_auto] gap-4 w-full h-full">
@@ -155,6 +178,32 @@ const Editor = () => {
               className="w-full rounded-2xl"
             >
               Square
+            </ToggleGroupItem>
+          </ToggleGroup>
+        </div>
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="character-set">Character Set</Label>
+          <ToggleGroup
+            id="character-set"
+            type="single"
+            variant="outline"
+            value={characterSet}
+            defaultValue={CharacterSet.Alphanumeric}
+            onValueChange={(value: string) => setCharacterSet(value)}
+            className="text-border"
+            disabled={!image}
+          >
+            <ToggleGroupItem
+              value={CharacterSet.Alphanumeric}
+              className="w-full rounded-2xl"
+            >
+              Alphanumeric
+            </ToggleGroupItem>
+            <ToggleGroupItem
+              value={CharacterSet.Block}
+              className="w-full rounded-2xl"
+            >
+              Block
             </ToggleGroupItem>
           </ToggleGroup>
         </div>

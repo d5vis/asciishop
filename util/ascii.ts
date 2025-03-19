@@ -15,7 +15,8 @@ export const ImageToAscii = async (
   fontScale: number,
   brightness: number,
   contrast: number,
-  invertText: boolean
+  invertText: boolean,
+  characterSet: string
 ): Promise<string> => {
   await initializeWasm();
 
@@ -33,5 +34,12 @@ export const ImageToAscii = async (
 
   const imageData = context.getImageData(0, 0, width, height);
 
-  return image_to_ascii(imageData, width, brightness, contrast, invertText);
+  return image_to_ascii(
+    imageData,
+    width,
+    brightness,
+    contrast,
+    invertText,
+    characterSet
+  );
 };
