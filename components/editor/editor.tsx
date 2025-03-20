@@ -19,6 +19,7 @@ enum AspectRatio {
 enum CharacterSet {
   Alphanumeric = "alphanumeric",
   Block = "block",
+  Round = "round",
 }
 
 const DEFAULT_VALUES = {
@@ -204,6 +205,12 @@ const Editor = () => {
               className="w-full rounded-2xl"
             >
               Block
+            </ToggleGroupItem>
+            <ToggleGroupItem
+              value={CharacterSet.Round}
+              className="w-full rounded-2xl"
+            >
+              Round
             </ToggleGroupItem>
           </ToggleGroup>
         </div>

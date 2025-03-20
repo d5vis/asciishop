@@ -17,6 +17,8 @@ pub fn image_to_ascii(
 
     let ascii_characters = if character_set == "block" {
         vec![' ', '░', '▒', '▓', '█']
+    } else if character_set == "round" {
+        vec![' ', '.', '●']
     } else {
         vec![
             ' ', '.', '-', '\'', ':', '_', ',', '^', '=', ';', '>', '<', '+', '!', 'r', 'c', '*', '/',
